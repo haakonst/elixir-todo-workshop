@@ -29,7 +29,7 @@ docker build -t elixir-todo-workshop .
 ## Run the Docker image
 Use either of these commands (the latter is just a script file containing the former):
 ```
-docker run --rm -it -v "C:/src/elixir-todo-workshop:/elixir-todo-workshop" elixir-todo-workshop
+docker run --rm -it -p 4000:4000 -v "C:/src/elixir-todo-workshop:/elixir-todo-workshop" elixir-todo-workshop
 .\docker-run.ps1
 ```
 

@@ -44,6 +44,5 @@ fi\n' >/entry.sh
 RUN chmod u+x /entry.sh
 
 CMD "/bin/bash"
-EXPOSE 4000
 WORKDIR /elixir-todo-workshop
 ENTRYPOINT ["/entry.sh"]
