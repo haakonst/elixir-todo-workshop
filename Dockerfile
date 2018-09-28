@@ -58,6 +58,12 @@ RUN cd assets \
   && ln -s /elixir-todo-workshop-build/node_modules node_modules \
   && yarn install \
   && node node_modules/brunch/bin/brunch build
+
+# Create and migrate the database.
+RUN invoke-rc.d postgresql start \
+  && mix ecto.create \
+  && mix ecto.migrate
+
 RUN rm -rf -- /elixir-todo-workshop
 
 CMD "/bin/bash"
