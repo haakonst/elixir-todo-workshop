@@ -1,8 +1,7 @@
 # Elixir/Phoenix TODO list application
 
 ## Requirements
-
-I've prepared a Dockerfile which can be used to build an image with all the necessary software needed to develop and run Elixir applications. So if you already have Git and Docker installed, you won't need anything else.
+I've prepared a Dockerfile which can be used to build an image with all the necessary software needed to build and run Elixir applications. So if you already have Git and Docker installed, you don't need to install other software on your computer to test this out. The image is only useful for development and experimenting, not production stuff.
 
 ### Software
 * [Git for Windows](https://gitforwindows.org/)
@@ -21,6 +20,7 @@ git clone https://github.com/haakonst/elixir-todo-workshop.git
 ```
 
 ## Build the Docker image
+This will take some time.
 ```
 cd C:/src/elixir-todo-workshop/
 docker build -t elixir-todo-workshop .
