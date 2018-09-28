@@ -44,6 +44,22 @@ exec "$@"\n\
 fi\n' >/entry.sh
 RUN chmod u+x /entry.sh
 
+# Fetch and bulid dependencies to facilitate getting started quicker with experimenting and devlopment.
+# For this the source directory is needed, but it's deleted afterwards since when running this image,
+# the source directory will be mapped from the host computer to better support editing and saving the files.
+COPY . /elixir-todo-workshop
+WORKDIR /elixir-todo-workshop
+
+RUN ln -s /elixir-todo-workshop-build/_build _build \
+  && ln -s /elixir-todo-workshop-build/deps deps \
+  && mix deps.get \
+  && mix deps.compile
+RUN cd assets \
+  && ln -s /elixir-todo-workshop-build/node_modules node_modules \
+  && yarn install \
+  && node node_modules/brunch/bin/brunch build
+RUN rm -rf -- /elixir-todo-workshop
+
 CMD "/bin/bash"
 WORKDIR /elixir-todo-workshop
 ENTRYPOINT ["/entry.sh"]
