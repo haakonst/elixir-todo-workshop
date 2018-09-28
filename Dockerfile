@@ -27,10 +27,11 @@ RUN invoke-rc.d postgresql start \
 RUN sed -ie 's/^\(local[[:space:]]\+all[[:space:]]\+postgres[[:space:]]\+\)peer[[:space:]]*$/\1md5/' /etc/postgresql/9.6/main/pg_hba.conf
 
 # Create build directories, so generated don't pollute the mapped source directory, as that might cause problems,
-# at least when the source directory is on a Windows host
+# at least when the source directory is on a Windows host.
 RUN mkdir -p /elixir-todo-workshop-build/_build /elixir-todo-workshop-build/deps /elixir-todo-workshop-build/node_modules
 
-# Entry point script: Start PostgreSQL and Redis and run command (defaults to a shell)
+# Entry point script: Start PostgreSQL and Redis and run command (defaults to a shell),
+# and add symlinks to the build directories.
 RUN printf '#!/bin/sh\n\
 set -e\n\
 invoke-rc.d postgresql start\n\
