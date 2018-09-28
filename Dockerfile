@@ -10,8 +10,13 @@ RUN curl -sS "https://dl.yarnpkg.com/debian/pubkey.gpg" | apt-key add - \
     && apt-get update \
     && apt-get -y install yarn
 
-# Install PostgreSQL, Redis, build tools (including gcc and make) and Git (the latter for convenience only)
-RUN apt-get update && apt-get -y install postgresql redis-server build-essential git
+# Install inotify-tools, PostgreSQL, Redis, build tools (including gcc and make) and Git (the latter for convenience only)
+RUN apt-get update && apt-get -y install inotify-tools postgresql redis-server build-essential git
+
+# Install  Hex (Erlang/Elixir package manager), Rebar (Erlang build tool) and Phoenix (web framework):
+RUN mix local.hex --force \
+    && mix local.rebar --force \
+    && mix archive.install --force https://github.com/phoenixframework/archives/raw/master/phx_new.ez
 
 # The policy-rc.d script must exit successfully, or the invocation of the postgresql service will be denied
 RUN printf '#!/bin/sh\nexit 0' >/usr/sbin/policy-rc.d
