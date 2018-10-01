@@ -55,7 +55,7 @@ Start coding by editing the files in `C:/src/elixir-todo-workshop/`. Elixir will
 ## Rebuilding and restarting
 When this happens hit <kbd>Ctrl</kbd> + C and depending on what you've changed you might only need to restart the server: `mix phx.server`. In other cases you may need to issue one of these commands first:
 
-* If you've done a change in the database schema: `mix ecto.migrate`
+* If you've changed the database schema: `mix ecto.migrate`
 * If you've added new Mix dependencies (in `mix.exs`): `mix deps.get && mix deps.compile`
 * If you've added new Node dependencies (in `assets/package.json`): `yarn install`
 * If you've added Node dependencies or changed static JavaScript/CSS files: `node assets/node_modules/brunch/bin/brunch build`
@@ -79,13 +79,15 @@ iex(1)> ElixirTodoWorkshopWeb.Router.Helpers.page_url(ElixirTodoWorkshopWeb.Endp
 ```
 
 ## Learn more
-* Elixir official website: https://elixir-lang.org/
+* Elixir official website, including a nice getting started guide: https://elixir-lang.org/
+* Elixir and Erlang package repository: https://hex.pm/
+* Elixir packages docs, including the standard library: https://hexdocs.pm/
 * Elixir Forum: https://elixirforum.com/
 * Elixir School: https://elixirschool.com/
-* Elixir and Erlang package repository: https://hex.pm/
+* Execute Elixir Online: http://www.compileonline.com/execute_elixir_online.php/
 * ElixirCasts: https://elixircasts.io/
 * Phoenix official website: http://www.phoenixframework.org/
 * Phoenix guides: http://phoenixframework.org/docs/overview
 * Phoenix docs: https://hexdocs.pm/phoenix
-* Mailing list: http://groups.google.com/group/phoenix-talk
-* Source: https://github.com/phoenixframework/phoenix
+* Phoenix Mailing list: http://groups.google.com/group/phoenix-talk
+* Phoenix Source: https://github.com/phoenixframework/phoenix
