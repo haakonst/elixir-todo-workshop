@@ -28,7 +28,7 @@ RUN sed -ie 's/^\(local[[:space:]]\+all[[:space:]]\+postgres[[:space:]]\+\)peer[
 
 # Create build directories, so generated don't pollute the mapped source directory, as that might cause problems,
 # at least when the source directory is on a Windows host.
-RUN mkdir -p /elixir-todo-workshop-build/_build /elixir-todo-workshop-build/deps /elixir-todo-workshop-build/node_modules
+RUN mkdir -p /elixir-todo-workshop-build/_build /elixir-todo-workshop-build/deps /elixir-todo-workshop-build/node_modules /elixir-todo-workshop-build/static
 
 # Entry point script: Start PostgreSQL and Redis and run command (defaults to a shell),
 # and add symlinks to the build directories.
@@ -36,10 +36,10 @@ RUN printf '#!/bin/sh\n\
 set -e\n\
 invoke-rc.d postgresql start\n\
 invoke-rc.d redis-server start\n\
-mkdir -p assets\n\
 ln -s /elixir-todo-workshop-build/_build _build\n\
 ln -s /elixir-todo-workshop-build/deps deps\n\
 mkdir -p assets && ln -s /elixir-todo-workshop-build/node_modules assets/node_modules\n\
+mkdir -p priv && ln -s -T /elixir-todo-workshop-build/static priv/static\n\
 exec "$@"\n\
 fi\n' >/entry.sh
 RUN chmod u+x /entry.sh
@@ -54,7 +54,8 @@ RUN ln -s /elixir-todo-workshop-build/_build _build \
   && ln -s /elixir-todo-workshop-build/deps deps \
   && mix deps.get \
   && mix deps.compile
-RUN cd assets \
+RUN ln -s -T /elixir-todo-workshop-build/static priv/static \
+  && cd assets \
   && ln -s /elixir-todo-workshop-build/node_modules node_modules \
   && yarn install \
   && node node_modules/brunch/bin/brunch build
