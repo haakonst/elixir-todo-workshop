@@ -1,7 +1,11 @@
 # Elixir/Phoenix TODO list application
 
+The goal with the workshop is to build a simple TODO list application. This repository just contains a skeleton of Elixir source code necessary to get started. I'll walk through the steps to build the application in the workshop. Until then you may try to run/write some easy Elixir programs, look in [docs/examples](docs/examples) for examples. See below for how to build and run a Docker image with Elixir.
+
+There's a nice getting started guide for Elixir at https://elixir-lang.org/getting-started/introduction.html. For the workshop we'll also use Phoenix, a framework for programming web applications in Phoenix, and we'll follow this description for getting a Phoenix app up and running: https://hexdocs.pm/phoenix/up_and_running.html.
+
 ## Requirements
-I've prepared a Dockerfile which can be used to build an image with all the necessary software needed to build and run Elixir applications. So if you already have Git and Docker installed, you don't need to install other software on your computer to test this out. The image is only useful for development and experimenting, not production stuff.
+I've prepared a Dockerfile which can be used to build an image with all the necessary software needed to build and run Elixir/Phoenix applications. So if you already have Git and Docker installed, you don't need to install other software on your computer to test this out. The image is only useful for development and experimenting, not production stuff.
 
 ### Software
 * [Git for Windows](https://gitforwindows.org/)
@@ -35,10 +39,10 @@ Use either of these commands (the latter is just a script file containing the fo
 ```
 
 ## Run Elixir/Phoenix (inside the Docker container)
-Now you can try out simple stuff using the `iex`, an interactive Elixir REPL, or `elixir` to run scripts:
+Now you can try out simple stuff using `iex`, an interactive Elixir REPL, or `elixir` to run scripts:
 ```
 # iex
-# elixir docs/examples/test.exs
+# elixir docs/examples/hello.exs
 ```
 
 To start the Phoenix application use this command:
