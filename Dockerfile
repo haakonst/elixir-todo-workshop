@@ -36,10 +36,10 @@ RUN printf '#!/bin/sh\n\
 set -e\n\
 invoke-rc.d postgresql start\n\
 invoke-rc.d redis-server start\n\
-ln -sfT /elixir-todo-workshop-build/_build _build\n\
-ln -sfT /elixir-todo-workshop-build/deps deps\n\
-mkdir -p assets && ln -sfT /elixir-todo-workshop-build/node_modules assets/node_modules\n\
-mkdir -p priv && ln -sfT /elixir-todo-workshop-build/static priv/static\n\
+test -L _build || ln -sfT /elixir-todo-workshop-build/_build _build\n\
+test -L deps || ln -sfT /elixir-todo-workshop-build/deps deps\n\
+mkdir -p assets && test -L priv/static || ln -sfT /elixir-todo-workshop-build/node_modules assets/node_modules\n\
+mkdir -p priv && test -L assets/node_modules || ln -sfT /elixir-todo-workshop-build/static priv/static\n\
 exec "$@"\n\
 fi\n' >/entry.sh
 RUN chmod u+x /entry.sh
@@ -50,12 +50,12 @@ RUN chmod u+x /entry.sh
 COPY . /elixir-todo-workshop
 WORKDIR /elixir-todo-workshop
 
-RUN ln -sfT /elixir-todo-workshop-build/_build _build \
-  && ln -sfT /elixir-todo-workshop-build/deps deps \
+RUN test -L _build || ln -sfT /elixir-todo-workshop-build/_build _build \
+  && test -L deps || ln -sfT /elixir-todo-workshop-build/deps deps \
   && mix deps.get \
   && mix deps.compile
-RUN ln -sfT /elixir-todo-workshop-build/static priv/static \
-  && ln -sfT /elixir-todo-workshop-build/node_modules assets/node_modules \
+RUN test -L priv/static || ln -sfT /elixir-todo-workshop-build/static priv/static \
+  && test -L assets/node_modules || ln -sfT /elixir-todo-workshop-build/node_modules assets/node_modules \
   && cd assets \
   && yarn install \
   && node node_modules/brunch/bin/brunch build
