@@ -1,6 +1,5 @@
 # Elixir/Phoenix TODO list application
-
-The goal with the workshop is to build a simple TODO list application. This repository just contains a skeleton of Elixir source code necessary to get started. I'll walk through the steps to build the application in the workshop. Until then you may try to run/write some easy Elixir programs, look in [docs/examples](docs/examples) for examples. See below for how to build and run a Docker image with Elixir.
+The goal with the workshop is to build a simple TODO list application using Elixir and Phoenix. This repository just contains a skeleton of Elixir source code necessary to get started. I'll walk through the steps to build the application in the workshop. Until then you may try to run/write some easy Elixir programs, look in [docs/examples](docs/examples) for examples. See below for how to build and run a Docker image with Elixir.
 
 There's a nice getting started guide for Elixir at https://elixir-lang.org/getting-started/introduction.html. For the workshop we'll also use Phoenix, a framework for programming web applications in Phoenix, and we'll follow this description for getting a Phoenix app up and running: https://hexdocs.pm/phoenix/up_and_running.html.
 
@@ -25,11 +24,11 @@ Ensure that the `C:` drive is shared so it will be available to your Docker cont
 ```
 
 ## Build the Docker image
-This will take some time.
 ```
 > cd C:/src/elixir-todo-workshop/
 > docker build -t elixir-todo-workshop .
 ```
+This will take some time. Don't worry too much about all the warnings and error messages that are displayed. The image will be built anyway, and the last message will be something like "Successfully tagged elixir-todo-workshop:latest" followed by another security warning which can be ignored.
 
 ## Run the Docker image
 Use either of these commands (the latter is just a script file containing the former):
@@ -54,17 +53,19 @@ To start the Phoenix application use this command:
 http://localhost:4000/
 
 ## Start coding
-Start coding by editing the files in `C:/src/elixir-todo-workshop/`. Elixir will note which files are changed, and usually recompile on the fly, so the changes will be immediately visible in the browser. In some cases (for example when the config files are changed) however this don't work and the server must be stopped and restarted manually. Elixir will print an error message when this happens.
+Start coding by editing the files in `C:/src/elixir-todo-workshop/`. Elixir will note which files are changed, and usually recompile on the fly, so the changes will be immediately visible in the browser.
 
-## Rebuilding and restarting
-When this happens hit <kbd>Ctrl</kbd> + C and depending on what you've changed you might only need to restart the server: `mix phx.server`. In other cases you may need to issue one of these commands first:
+## Advanced
+
+### Rebuilding and restarting
+In some cases when running a Phoenix application, for example when the config files are changed, the code cannot recompiled on the fly and the server must be stopped and restarted manually. Elixir will print an error message when this happens. If so hit <kbd>Ctrl</kbd> + C to stop the server, and depending on what you've changed, you may only need to restart the server: `mix phx.server`. In other cases you may need to issue one of these commands first:
 
 * If you've changed the database schema: `mix ecto.migrate`
 * If you've added new Mix dependencies (in `mix.exs`): `mix deps.get && mix deps.compile`
 * If you've added new Node dependencies (in `assets/package.json`): `yarn install`
 * If you've added Node dependencies or changed static JavaScript/CSS files: `node assets/node_modules/brunch/bin/brunch build`
 
-## Advanced
+### Mulitiple shells
 If you want to have another shell in the Docker container, for example to test Elixir stuff with `iex` or `elixir` while your Phoenix application is running, start another command window, with PowerShell for example, and get the id or name of the Docker container and attach to it using these commands:
 ```
 > docker ps
@@ -76,7 +77,7 @@ You can also connect to your running Phoenix application using this command (fro
 # iex -S mix
 ```
 
-This will let you invoke functions in the modules of your applications. For example, to get the URL of the index page:
+This will let you invoke functions in the modules of your application. For example, to get the URL of the index page:
 ```
 iex(1)> ElixirTodoWorkshopWeb.Router.Helpers.page_url(ElixirTodoWorkshopWeb.Endpoint, :index)
 "http://localhost:4000/"
