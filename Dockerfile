@@ -21,8 +21,19 @@ RUN mix local.hex --force \
 # The policy-rc.d script must exit successfully, or the invocation of the postgresql service will be denied
 RUN printf '#!/bin/sh\nexit 0' >/usr/sbin/policy-rc.d
 
+RUN printf '#!/bin/sh\n\
+set -e\n\
+timer="5"\n\
+until pg_isready -q\n\
+do\n\
+  echo "Waiting for PostgreSQL - sleeping for $timer seconds" >&2\n\
+  sleep "$timer"\n\
+done\n' >/pg_wait.sh
+RUN chmod u+x /pg_wait.sh
+
 # Change PostgreSQL authentication method for user postgres from PEER to MD5 and set password to "postgres"
 RUN invoke-rc.d postgresql start \
+  && /pg_wait.sh \
   && su -c "psql -c \"ALTER USER postgres WITH ENCRYPTED PASSWORD 'postgres';\"" postgres
 RUN sed -ie 's/^\(local[[:space:]]\+all[[:space:]]\+postgres[[:space:]]\+\)peer[[:space:]]*$/\1md5/' /etc/postgresql/9.6/main/pg_hba.conf
 
@@ -40,6 +51,7 @@ test -L _build || ln -sfT /elixir-todo-workshop-build/_build _build\n\
 test -L deps || ln -sfT /elixir-todo-workshop-build/deps deps\n\
 mkdir -p assets && test -L assets/node_modules || ln -sfT /elixir-todo-workshop-build/node_modules assets/node_modules\n\
 mkdir -p priv && test -L priv/static || ln -sfT /elixir-todo-workshop-build/static priv/static\n\
+/pg_wait.sh\n\
 exec "$@"\n\
 fi\n' >/entry.sh
 RUN chmod u+x /entry.sh
@@ -62,6 +74,7 @@ RUN test -L priv/static || ln -sfT /elixir-todo-workshop-build/static priv/stati
 
 # Create and migrate the database.
 RUN invoke-rc.d postgresql start \
+  && /pg_wait.sh \
   && mix ecto.create \
   && mix ecto.migrate
 
