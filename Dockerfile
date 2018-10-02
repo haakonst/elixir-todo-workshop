@@ -38,8 +38,8 @@ invoke-rc.d postgresql start\n\
 invoke-rc.d redis-server start\n\
 test -L _build || ln -sfT /elixir-todo-workshop-build/_build _build\n\
 test -L deps || ln -sfT /elixir-todo-workshop-build/deps deps\n\
-mkdir -p assets && test -L priv/static || ln -sfT /elixir-todo-workshop-build/node_modules assets/node_modules\n\
-mkdir -p priv && test -L assets/node_modules || ln -sfT /elixir-todo-workshop-build/static priv/static\n\
+mkdir -p assets && test -L assets/node_modules || ln -sfT /elixir-todo-workshop-build/node_modules assets/node_modules\n\
+mkdir -p priv && test -L priv/static || ln -sfT /elixir-todo-workshop-build/static priv/static\n\
 exec "$@"\n\
 fi\n' >/entry.sh
 RUN chmod u+x /entry.sh
