@@ -1,0 +1,5 @@
+<h2>New List</h2>
+
+<%= render "form.html", Map.put(assigns, :action, list_path(@conn, :create)) %>
+
+<span><%= link "Back", to: list_path(@conn, :index) %></span>
