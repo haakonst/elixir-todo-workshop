@@ -19,7 +19,7 @@ defmodule ElixirTodoWorkshopWeb.ListController do
       {:ok, _list} ->
         conn
         |> put_flash(:info, "List created successfully.")
-        |> redirect(to: list_path(conn, :show, list))
+        |> redirect(to: list_path(conn, :index))
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
@@ -40,10 +40,10 @@ defmodule ElixirTodoWorkshopWeb.ListController do
     list = Todo.get_list!(id)
 
     case Todo.update_list(list, list_params) do
-      {:ok, list} ->
+      {:ok, _list} ->
         conn
         |> put_flash(:info, "List updated successfully.")
-        |> redirect(to: list_path(conn, :show, list))
+        |> redirect(to: list_path(conn, :index))
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", list: list, changeset: changeset)
     end
