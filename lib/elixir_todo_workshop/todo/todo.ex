@@ -131,7 +131,7 @@ defmodule ElixirTodoWorkshop.Todo do
       ** (Ecto.NoResultsError)
 
   """
-  def get_item!(id), do: Repo.get!(Item, id)
+  def get_item!(id), do: Repo.get!(Item, id) |> Repo.preload([:list])
 
   @doc """
   Creates a item.

@@ -19,7 +19,7 @@ defmodule ElixirTodoWorkshopWeb.ItemController do
       {:ok, item} ->
         conn
         |> put_flash(:info, "Item created successfully.")
-        |> redirect(to: item_path(conn, :show, item))
+        |> redirect(to: item_path(conn, :index, item.list))
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
@@ -43,7 +43,7 @@ defmodule ElixirTodoWorkshopWeb.ItemController do
       {:ok, item} ->
         conn
         |> put_flash(:info, "Item updated successfully.")
-        |> redirect(to: item_path(conn, :show, item))
+        |> redirect(to: item_path(conn, :index, item.list))
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", item: item, changeset: changeset)
     end
@@ -55,6 +55,6 @@ defmodule ElixirTodoWorkshopWeb.ItemController do
 
     conn
     |> put_flash(:info, "Item deleted successfully.")
-    |> redirect(to: item_path(conn, :index))
+    |> redirect(to: item_path(conn, :index, item.list))
   end
 end
