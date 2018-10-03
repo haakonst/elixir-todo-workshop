@@ -23,3 +23,4 @@
 </table>
 
 <span><%= link "New Item", to: item_path(@conn, :new, @list) %></span>
+<span><%= link "Back", to: list_path(@conn, :index) %></span>
