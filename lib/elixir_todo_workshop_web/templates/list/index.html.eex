@@ -1,4 +1,4 @@
-<h2>Listing Lists</h2>
+<h2>TODO Lists</h2>
 
 <table class="table">
   <thead>
@@ -11,7 +11,7 @@
   <tbody>
 <%= for list <- @lists do %>
     <tr>
-      <td><%= list.name %></td>
+      <td><%= link(list.name, to: item_path(@conn, :index, list)) %></td>
 
       <td class="text-right">
         <span><%= link "Show", to: list_path(@conn, :show, list), class: "btn btn-default btn-xs" %></span>

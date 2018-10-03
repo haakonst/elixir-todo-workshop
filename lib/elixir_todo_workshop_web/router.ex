@@ -18,7 +18,8 @@ defmodule ElixirTodoWorkshopWeb.Router do
 
     get "/", PageController, :index
     resources "/lists", ListController
-    resources "/items", ItemController
+    resources "/items", ItemController, only: [:new, :create, :edit, :update, :delete]
+    get "/items/:list", ItemController, :index
   end
 
   # Other scopes may use custom stacks.

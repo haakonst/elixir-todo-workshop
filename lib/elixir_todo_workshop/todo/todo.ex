@@ -35,7 +35,7 @@ defmodule ElixirTodoWorkshop.Todo do
       ** (Ecto.NoResultsError)
 
   """
-  def get_list!(id), do: Repo.get!(List, id)
+  def get_list!(id), do: Repo.get!(List, id) |> Repo.preload([:items])
 
   @doc """
   Creates a list.

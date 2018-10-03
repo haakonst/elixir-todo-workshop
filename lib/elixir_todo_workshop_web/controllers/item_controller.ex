@@ -4,9 +4,9 @@ defmodule ElixirTodoWorkshopWeb.ItemController do
   alias ElixirTodoWorkshop.Todo
   alias ElixirTodoWorkshop.Todo.Item
 
-  def index(conn, _params) do
-    items = Todo.list_items()
-    render(conn, "index.html", items: items)
+  def index(conn, %{"list" => list} = _params) do
+    list = Todo.get_list!(list)
+    render(conn, "index.html", list: list, items: list.items)
   end
 
   def new(conn, _params) do
