@@ -16,7 +16,7 @@ defmodule ElixirTodoWorkshopWeb.ListController do
 
   def create(conn, %{"list" => list_params}) do
     case Todo.create_list(list_params) do
-      {:ok, list} ->
+      {:ok, _list} ->
         conn
         |> put_flash(:info, "List created successfully.")
         |> redirect(to: list_path(conn, :show, list))

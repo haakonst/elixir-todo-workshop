@@ -16,4 +16,11 @@ defmodule ElixirTodoWorkshop.Todo.Item do
     |> cast(attrs, [:description])
     |> validate_required([:description])
   end
+
+  def changeset_create(item, attrs, list) do
+    item
+    |> cast(attrs, [:description])
+    |> validate_required([:description])
+    |> put_assoc(:list, list)
+  end
 end

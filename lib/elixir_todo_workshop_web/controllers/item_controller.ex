@@ -15,8 +15,9 @@ defmodule ElixirTodoWorkshopWeb.ItemController do
     render(conn, "new.html", list: list, changeset: changeset)
   end
 
-  def create(conn, %{"item" => item_params}) do
-    case Todo.create_item(item_params) do
+  def create(conn, %{"list" => list, "item" => item_params}) do
+    list = Todo.get_list!(list)
+    case Todo.create_item(item_params, list) do
       {:ok, item} ->
         conn
         |> put_flash(:info, "Item created successfully.")

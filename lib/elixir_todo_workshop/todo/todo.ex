@@ -145,9 +145,9 @@ defmodule ElixirTodoWorkshop.Todo do
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_item(attrs \\ %{}) do
+  def create_item(attrs \\ %{}, list) do
     %Item{}
-    |> Item.changeset(attrs)
+    |> Item.changeset_create(attrs, list)
     |> Repo.insert()
   end
 
