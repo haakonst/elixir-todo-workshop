@@ -5,6 +5,7 @@ defmodule ElixirTodoWorkshop.Todo.Item do
 
   schema "items" do
     field :description, :string
+    belongs_to :list, ElixirTodoWorkshop.Todo.List, on_replace: :nilify
 
     timestamps()
   end

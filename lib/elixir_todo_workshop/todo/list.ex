@@ -5,6 +5,7 @@ defmodule ElixirTodoWorkshop.Todo.List do
 
   schema "lists" do
     field :name, :string
+    has_many :items, ElixirTodoWorkshop.Todo.Item
 
     timestamps()
   end
