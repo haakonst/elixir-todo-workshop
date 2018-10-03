@@ -9,9 +9,10 @@ defmodule ElixirTodoWorkshopWeb.ItemController do
     render(conn, "index.html", list: list, items: list.items)
   end
 
-  def new(conn, _params) do
+  def new(conn, %{"list" => list} = _params) do
+    list = Todo.get_list!(list)
     changeset = Todo.change_item(%Item{})
-    render(conn, "new.html", changeset: changeset)
+    render(conn, "new.html", list: list, changeset: changeset)
   end
 
   def create(conn, %{"item" => item_params}) do

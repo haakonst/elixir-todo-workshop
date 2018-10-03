@@ -22,4 +22,4 @@
   </tbody>
 </table>
 
-<span><%= link "New Item", to: item_path(@conn, :new) %></span>
+<span><%= link "New Item", to: item_path(@conn, :new, @list) %></span>
