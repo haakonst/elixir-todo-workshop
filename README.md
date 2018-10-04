@@ -1,6 +1,8 @@
 # Elixir/Phoenix TODO list application
 The goal with the workshop is to build a simple TODO list application using Elixir and Phoenix. This repository just contains a skeleton of Elixir source code necessary to get started. I'll walk through the steps to build the application in the workshop. Until then you may try to run/write some easy Elixir programs, look in [docs/examples](docs/examples) for examples. See below for how to build and run a Docker image with Elixir.
 
+Check out the branch [todo-app-all-steps](https://github.com/haakonst/elixir-todo-workshop/tree/todo-app-all-steps) for a minimal implementation of the TODO list application. You can also see the [slides](https://haakonst.github.io/elixir-todo-workshop/presentation.html) from the workshop.
+
 There's a nice getting started guide for Elixir at https://elixir-lang.org/getting-started/introduction.html. For the workshop we'll also use Phoenix, a framework for programming web applications in Phoenix, and we'll follow this description for getting a Phoenix app up and running: https://hexdocs.pm/phoenix/up_and_running.html.
 
 ## Requirements
