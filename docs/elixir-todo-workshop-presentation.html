@@ -100,14 +100,12 @@ Running in production is a different story...
 ---
 # Phoenix
 
-* Phoenix is a framework for developing web applications with Elixir.
-* Phoenix is based on the model-view-controller (MVC) methodology.
+* Phoenix is a framework for developing web applications with Elixir
+* Phoenix is based on the model-view-controller (MVC) methodology
 * HTML is generated on the server and sent to the client
 * Not much JavaScript
 
 ---
-class: fontsize100
-
 # Setting up a new Phoenix app
 
 Phoenix provides a helper command which will generate the basic directory and file structure needed by a Phoenix app:
@@ -120,9 +118,17 @@ For this project I created the directory with a Git repository in advance so I h
 mix phx.new . --module ElixirTodoWorkshop --app elixir_todo_workshop
 ```
 
-This creates a Phoenix app which can be visited at http://localhost:4000/:
+---
+# Running Phoenix
 
-<img src="images/phoenix-default-index.png" title="Phoenix default index page" width="250">
+Use this command to start the Phoenix application you just created:
+```
+mix phx.server
+```
+
+Now you can visit the application at http://localhost:4000/:
+
+.center[<img src="images/phoenix-default-index.png" title="Phoenix default index page" width="350">]
 
 ---
 # TODO list application
