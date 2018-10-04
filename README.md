@@ -14,7 +14,8 @@ I've prepared a Dockerfile which can be used to build an image with all the nece
 Use your editor of choice, or for example [Visual Studio Code](https://code.visualstudio.com/) with the `vscode-elixir` extension for syntax highlighting etc.
 
 ### Config
-Ensure that the `C:` drive is shared so it will be available to your Docker containers. Right click the Docker status icon and look under "Shared Drives" in the "Settings" window.
+Ensure that the `C:` drive is shared so it will be available to your Docker containers. Right-click the Docker status icon and look under "Shared Drives" in the "Settings" window. Note that whenever you change the password for your Windows user account, you must redo this setting: go to the "Settings" window again, uncheck the box for drive `C:`, click "Apply", and then check the box again followed by another "Apply", and finally you'll be asked to authenticate by entering your new password.
+
 ![Docker Settings: Shared Drives](docs/images/docker-settings-shared-drives.png?raw=true "Docker Settings: Shared Drives")
 
 ## Clone the Git repository
