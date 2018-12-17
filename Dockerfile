@@ -35,7 +35,7 @@ RUN chmod u+x /pg_wait.sh
 RUN invoke-rc.d postgresql start \
   && /pg_wait.sh \
   && su -c "psql -c \"ALTER USER postgres WITH ENCRYPTED PASSWORD 'postgres';\"" postgres
-RUN sed -ie 's/^\(local[[:space:]]\+all[[:space:]]\+postgres[[:space:]]\+\)peer[[:space:]]*$/\1md5/' /etc/postgresql/9.6/main/pg_hba.conf
+RUN sed -i -e 's/^\(local[[:space:]]\+all[[:space:]]\+postgres[[:space:]]\+\)peer[[:space:]]*$/\1md5/' /etc/postgresql/9.6/main/pg_hba.conf
 
 # Create build directories, so generated don't pollute the mapped source directory, as that might cause problems,
 # at least when the source directory is on a Windows host.
